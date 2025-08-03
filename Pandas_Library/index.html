@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pandas Cheat Sheet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        h2 {
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            overflow-x: auto;
+            border-left: 4px solid #007BFF;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        @media print {
+            body {
+                background-color: white;
+            }
+            pre {
+                background-color: white;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>🐼 Pandas Cheat Sheet</h1>
+
+<h2>1. Importing Pandas</h2>
+<pre><code>import pandas as pd</code></pre>
+
+<h2>2. Loading Data</h2>
+<pre><code>pd.read_csv('data.csv')         # CSV file
+pd.read_excel('data.xlsx')      # Excel file
+pd.DataFrame(dict_data)         # From dictionary</code></pre>
+
+<h2>3. DataFrame Inspection</h2>
+<table>
+    <tr><th>Command</th><th>Description</th></tr>
+    <tr><td>df.head()</td><td>First 5 rows</td></tr>
+    <tr><td>df.tail()</td><td>Last 5 rows</td></tr>
+    <tr><td>df.shape</td><td>Shape (rows, columns)</td></tr>
+    <tr><td>df.columns</td><td>Column names</td></tr>
+    <tr><td>df.info()</td><td>Summary info</td></tr>
+    <tr><td>df.describe()</td><td>Statistical summary</td></tr>
+</table>
+
+<h2>4. Selecting & Filtering</h2>
+<table>
+    <tr><th>Task</th><th>Code</th></tr>
+    <tr><td>Single column</td><td>df['col']</td></tr>
+    <tr><td>Multiple columns</td><td>df[['col1', 'col2']]</td></tr>
+    <tr><td>Row by label</td><td>df.loc[label]</td></tr>
+    <tr><td>Row by index</td><td>df.iloc[index]</td></tr>
+    <tr><td>Filter rows</td><td>df[df['col'] > value]</td></tr>
+    <tr><td>Multiple conditions</td><td>df[(cond1) &amp; (cond2)]</td></tr>
+</table>
+
+<h2>5. Handling Missing Data</h2>
+<table>
+    <tr><th>Task</th><th>Code</th></tr>
+    <tr><td>Check nulls</td><td>df.isnull()</td></tr>
+    <tr><td>Count missing</td><td>df.isnull().sum()</td></tr>
+    <tr><td>Drop missing rows</td><td>df.dropna()</td></tr>
+    <tr><td>Fill missing values</td><td>df.fillna(value)</td></tr>
+    <tr><td>Fill with mean</td><td>df.fillna(df.mean())</td></tr>
+</table>
+
+<h2>6. Modifying Data</h2>
+<table>
+    <tr><th>Task</th><th>Code</th></tr>
+    <tr><td>Rename columns</td><td>df.rename(columns={'old': 'new'})</td></tr>
+    <tr><td>Add new column</td><td>df['new'] = df['col'] * 2</td></tr>
+    <tr><td>Drop column</td><td>df.drop('col', axis=1, inplace=True)</td></tr>
+    <tr><td>Apply function</td><td>df['col'].apply(lambda x: x.upper())</td></tr>
+</table>
+
+<h2>7. Aggregation & Grouping</h2>
+<pre><code>df.groupby('category')['sales'].mean()
+df.groupby('category').agg({'sales': ['mean', 'max', 'min']})
+df.pivot_table(values='Sales', index='Region', columns='Month')</code></pre>
+
+<h2>8. Sorting</h2>
+<pre><code>df.sort_values(by='col', ascending=False)
+df.sort_index()</code></pre>
+
+<h2>9. Date & Time</h2>
+<pre><code>df['date'] = pd.to_datetime(df['date'])
+df.set_index('date', inplace=True)
+df['2023-01':'2023-12']</code></pre>
+
+<h2>10. Merging & Joining</h2>
+<pre><code>pd.merge(df1, df2, on='id', how='inner')   # Merge
+pd.concat([df1, df2], axis=0)              # Stack vertically
+pd.concat([df1, df2], axis=1)              # Combine horizontally</code></pre>
+
+<h2>11. Saving Data</h2>
+<pre><code>df.to_csv('output.csv', index=False)
+df.to_excel('output.xlsx', index=False)</code></pre>
+
+<h2>12. Tips</h2>
+<ul>
+    <li>Use <code>inplace=True</code> to modify DataFrame in place</li>
+    <li>Use <code>.copy()</code> to avoid view/copy warnings</li>
+    <li>Use <code>.query("col > 10")</code> for cleaner filtering</li>
+    <li>Use <code>.value_counts()</code> to explore categorical data</li>
+</ul>
+
+</body>
+</html>
